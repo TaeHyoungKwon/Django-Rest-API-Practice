@@ -17,14 +17,22 @@ from django.contrib import admin
 from django.urls import path
 
 from updates.views import update_model_detail_view
-from updates.views import json_example_view, JsonCBV, JsonCBV2
+from updates.views import (
+    json_example_view,
+    JsonCBV,
+    JsonCBV2,
+    SerializedDetailView,
+    SerializedListView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', update_model_detail_view),
     path('json/example/', json_example_view),
     path('json/cbv/', JsonCBV.as_view()),
-    path('json/cbv2/', JsonCBV2.as_view())
+    path('json/cbv2/', JsonCBV2.as_view()),
+    path('json/serialized/detail/', SerializedDetailView.as_view()),
+    path('json/serialized/list/', SerializedListView.as_view()),
 
 
 ]
