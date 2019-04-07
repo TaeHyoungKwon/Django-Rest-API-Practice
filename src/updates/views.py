@@ -51,16 +51,8 @@ class SerializedDetailView(View):
     def get(self, request, *args, **kwargs):
         obj = Update.objects.get(id=1)
         # 하나의 row object에 대해서, json으로 직렬화 한다.
-        data = serialize("json", [obj, ], fields=('user', 'content'))
-        json_data = data
-        print(data)
-        '''
-        data = {
-            "user": obj.user.username,
-            "content": obj.content
-        }
-        json_data = json.dumps(data)
-        '''
+        #data = serialize("json", [obj, ], fields=('user', 'content'))
+        json_data = obj.serialize()
 
         return HttpResponse(json_data, content_type='application/json')
 
@@ -69,16 +61,7 @@ class SerializedListView(View):
     def get(self, request, *args, **kwargs):
         qs = Update.objects.all()
         print(qs)
-        data = serialize("json", qs, fields=('user', 'content'))
-        json_data = data
-        print(data)
-        print("kwontaehyoung")
-        '''
-        data = {
-            "user": obj.user.username,
-            "content": obj.content
-        }
-        json_data = json.dumps(data)
-        '''
+        #data = serialize("json", qs, fields=('user', 'content'))
+        json_data = qs.serialize()
 
         return HttpResponse(json_data, content_type='application/json')
